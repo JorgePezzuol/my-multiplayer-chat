@@ -1,11 +1,11 @@
-export function preload() {
-  this.load.image(
+export function _preload(context) {
+  context.load.image(
     "tiles",
     "../assets/tilesets/tuxmon-sample-32px-extruded.png"
   );
-  this.load.tilemapTiledJSON("map", "../assets/tilemaps/tuxemon-town.json");
+  context.load.tilemapTiledJSON("map", "../assets/tilemaps/tuxemon-town.json");
 
-  this.load.atlas(
+  context.load.atlas(
     "atlas",
     "../assets/atlas/atlas.png",
     "../assets/atlas/atlas.json"

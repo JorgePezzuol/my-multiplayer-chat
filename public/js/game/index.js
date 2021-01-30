@@ -1,6 +1,4 @@
-import { preload } from "./preload.js";
-import { create } from "./create.js";
-import { update } from "./update.js";
+import Gambuzino from "./gambuzino.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -14,11 +12,7 @@ const config = {
       gravity: { y: 0 },
     },
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update,
-  },
+  scene: [Gambuzino],
 };
 
 const game = new Phaser.Game(config);
