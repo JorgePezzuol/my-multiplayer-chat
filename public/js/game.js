@@ -137,7 +137,7 @@ class Game extends Phaser.Scene {
     this.socket.on("currentPlayers", function (players) {
       console.log(players);
       Object.keys(players).forEach(function (id, index) {
-        if (index == 0) return false;
+        //if (index == 0) return false;
         if (players[id].playerId === self.socket.id) {
           self.addPlayer(self);
         } else {
