@@ -18,7 +18,8 @@ io.on('connection', function (socket) {
     x: Math.floor(Math.random() * 700) + 50,
     y: Math.floor(Math.random() * 500) + 50,
     playerId: socket.id,
-    animation: ""
+    animation: "",
+    displayName: ""
   };
   // send the players object to the new player
   socket.emit('currentPlayers', players);
@@ -41,6 +42,15 @@ io.on('connection', function (socket) {
     // emit a message to all players about the player that moved
     socket.broadcast.emit('playerMoved', players[socket.id]);
   });
+
+  socket.on('playerJoinsCall', function(playerName) {
+    players[socket.id].displayName = playerName;
+    players[socket.id].x = players[socket.id].x;
+    players[socket.id].y = players[socket.id].y;
+    socket.broadcast.emit('playerJoinedCall', players[socket.id]);
+    console.log('user joined call: ', playerName + socket.id);
+  });
+
 });
 
 server.listen(8081, function () {

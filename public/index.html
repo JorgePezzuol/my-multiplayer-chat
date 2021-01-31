@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- main css-->
-    <link rel="stylesheet" href="css/index.css" />
+    <!-- css-->
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
 
     <!-- vendors-->
     <script src="/socket.io/socket.io.js" defer></script>
@@ -15,10 +16,24 @@
     <script src="js/vendor/meet.jit.js" defer></script>
 
     <!-- game-->
-    <script src="js/game/index.js" type="module"></script>
+    <!-- <script src="js/meeting.js" defer></script> -->
+    <script src="js/game/index.js" type="module" defer></script>
   </head>
 
   <body>
-    <div id="game-container"></div>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Test</h1>
+        <p class="subtitle">subtitle</p>
+        <div class="columns is-centered">
+          <div class="column">
+            <div id="game-container"></div>
+          </div>
+          <div class="column">
+            <div id="meeting"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

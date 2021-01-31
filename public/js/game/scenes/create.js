@@ -1,8 +1,11 @@
 import _createAnimations from "./animation.js";
 import _playerEventListener from "./player.js";
+import _mediaEventLister from "../../meeting_.js";
 
 export function _create(context) {
-  var self = context;
+  const self = context;
+
+  self.container = context.add.container(400, 300);
 
   context.socket = io();
 
@@ -29,6 +32,7 @@ export function _create(context) {
 
   context.camera = context.cameras.main;
   context.otherPlayers = context.physics.add.group();
+
   context.cursors = context.input.keyboard.createCursorKeys();
   context.keyA = context.input.keyboard.addKey(
     Phaser.Input.Keyboard.KeyCodes.A
@@ -43,16 +47,18 @@ export function _create(context) {
     Phaser.Input.Keyboard.KeyCodes.W
   );
 
+  // config animations and listen for player events
   _createAnimations(context);
   _playerEventListener(context, self);
+  _mediaEventLister(context, self);
 
-  context.add
-    .text(16, 16, "Procure pelos Gambuzinos\nAnde usando 'WASD'", {
-      font: "18px monospace",
-      fill: "#000000",
-      padding: { x: 20, y: 10 },
-      backgroundColor: "#ffffff",
-    })
-    .setScrollFactor(0)
-    .setDepth(30);
+  // context.add
+  //   .text(16, 16, "Procure pelos Gambuzinos\nAnde usando 'WASD'", {
+  //     font: "18px monospace",
+  //     fill: "#000000",
+  //     padding: { x: 20, y: 10 },
+  //     backgroundColor: "#ffffff",
+  //   })
+  //   .setScrollFactor(0)
+  //   .setDepth(30);
 }

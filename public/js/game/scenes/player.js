@@ -6,6 +6,9 @@ function addPlayer(self) {
   self.physics.add.collider(self.player, self.worldLayer);
   self.camera.startFollow(self.player);
   self.camera.setBounds(0, 0, self.map.widthInPixels, self.map.heightInPixels);
+
+  // var style = { font: "32px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: 30, align: "center", backgroundColor: "#ffff00" };
+  // self.text = self.add.text(0, 0, "asdsasasa", style);
 }
 
 function addOtherPlayers(self, playerInfo) {
@@ -50,5 +53,27 @@ export default function _playerEventListener(context, self) {
         otherPlayer.setPosition(playerInfo.x, playerInfo.y);
       }
     });
+  });
+
+  context.socket.on("playerJoinedCall", function (playerInfo) {
+    self.otherPlayers.getChildren().forEach(function (otherPlayer) {
+      if (playerInfo.playerId === otherPlayer.playerId) {
+        var style = {
+          font: "16px Arial",
+          fill: "#ff0044",
+          wordWrap: true,
+          wordWrapWidth: 30,
+          align: "center",
+          backgroundColor: "#ffff00",
+        };
+        context.text = context.add.text(0, 0, playerInfo.displayName, style);
+        context.text.x = Math.floor(playerInfo.x - 30);
+        context.text.y = Math.floor(playerInfo.y - 30);
+      }
+    });
+    // var style = { font: "16px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: 30, align: "center", backgroundColor: "#ffff00" };
+    // context.text = context.add.text(0, 0, playerInfo.displayName, style);
+    // context.text.x = Math.floor(playerInfo.x - 30);
+    // context.text.y = Math.floor(playerInfo.y - 30);
   });
 }
