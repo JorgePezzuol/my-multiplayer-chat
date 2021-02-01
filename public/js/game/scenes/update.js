@@ -28,18 +28,15 @@ export function _update(context) {
         x: context.player.x,
         y: context.player.y,
         animation: "misa-left-walk",
+        username: localStorage.getItem("username"),
       });
-
-      // console.log(context.otherPlayers);
-      // context.text.x = Math.floor(context.player.x - 30);
-      // context.text.y = Math.floor(context.player.y - 30);
-
     } else if (context.keyD.isDown) {
       context.player.anims.play("misa-right-walk", true);
       context.socket.emit("playerMovement", {
         x: context.player.x,
         y: context.player.y,
         animation: "misa-right-walk",
+        username: localStorage.getItem("username"),
       });
     } else if (context.keyW.isDown) {
       context.player.anims.play("misa-back-walk", true);
@@ -47,6 +44,7 @@ export function _update(context) {
         x: context.player.x,
         y: context.player.y,
         animation: "misa-back-walk",
+        username: localStorage.getItem("username"),
       });
     } else if (context.keyS.isDown) {
       context.player.anims.play("misa-front-walk", true);
@@ -54,14 +52,19 @@ export function _update(context) {
         x: context.player.x,
         y: context.player.y,
         animation: "misa-front-walk",
+        username: localStorage.getItem("username"),
       });
     } else {
       context.player.anims.stop();
-      context.socket.emit("playerMovement", {
-        x: context.player.x,
-        y: context.player.y,
-        animation: "",
-      });
+      // context.socket.emit("playerMovement", {
+      //   x: context.player.x,
+      //   y: context.player.y,
+      //   animation: "",
+      //   username: localStorage.getItem("username"),
+      // });
     }
+
+    context.player.username.x = context.player.x - 30;
+    context.player.username.y = context.player.y - 30;
   }
 }

@@ -2,9 +2,9 @@ import { _preload } from "./scenes/preload.js";
 import { _create } from "./scenes/create.js";
 import { _update } from "./scenes/update.js";
 
-export default class Gambuzino extends Phaser.Scene {
+export default class Game extends Phaser.Scene {
   constructor() {
-    super({ key: "Gambuzino" });
+    super({ key: "Game" });
   }
   preload() {
     _preload(this);
