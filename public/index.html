@@ -2,24 +2,22 @@
 <html>
   <head>
     <title>Multiplayer Game</title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- css-->
     <link rel="stylesheet" href="css/bulma.min.css" />
-    <!-- <link rel="stylesheet" href="css/main.css" /> -->
-
-    <script src="js/utils/modal.js"></script>
 
     <!-- vendors-->
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="js/vendor/phaser.min.js" defer></script>
     <script src="js/vendor/meet.jit.js" defer></script>
+    <script src="js/vendor/hark.js" defer></script>
 
     <!-- game-->
     <script src="js/game/index.js" type="module" defer></script>
-    
   </head>
 
   <body>
@@ -51,18 +49,51 @@
               <div class="field-body">
                 <div class="field">
                   <p class="control">
-                    <input class="input" id="username" type="text" placeholder="Enter username here">
+                    <input
+                      class="input"
+                      id="username"
+                      type="text"
+                      placeholder="Enter username here"
+                    />
                   </p>
                 </div>
               </div>
             </div>
           </section>
           <footer class="modal-card-foot">
-            <button id="btn-save-username" class="button is-success">Confirm</button>
+            <button id="btn-save-username" class="button is-success">
+              Confirm
+            </button>
             <button class="button close-modal">Cancel</button>
           </footer>
         </div>
       </div>
     </section>
+
+    <script>
+      navigator.getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia;
+      var constraints = { audio: true};
+
+      function errorCallback(error) {
+        console.log("navigator.getUserMedia error: ", error);
+      }
+      navigator.getUserMedia(constraints, onMediaSuccess, errorCallback);
+
+      function onMediaSuccess(blog) {
+        var options = {};
+        var speechEvents = hark(blog, options);
+
+        speechEvents.on("speaking", function () {
+          console.log("speaking@@@");
+        });
+
+        speechEvents.on("stopped_speaking", function () {
+          console.log("stopped_speaking");
+        });
+      }
+    </script>
   </body>
 </html>

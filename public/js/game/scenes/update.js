@@ -1,6 +1,6 @@
 export function _update(context) {
   if (context.player) {
-    const speed = 120;
+    const speed = 100;
     context.player.body.setVelocity(0);
 
     if (context.keyA.isDown) {
@@ -56,12 +56,12 @@ export function _update(context) {
       });
     } else {
       context.player.anims.stop();
-      // context.socket.emit("playerMovement", {
-      //   x: context.player.x,
-      //   y: context.player.y,
-      //   animation: "",
-      //   username: localStorage.getItem("username"),
-      // });
+      context.socket.emit("playerMovement", {
+        x: context.player.x,
+        y: context.player.y,
+        animation: "",
+        username: localStorage.getItem("username"),
+      });
     }
 
     context.player.username.x = context.player.x - 30;

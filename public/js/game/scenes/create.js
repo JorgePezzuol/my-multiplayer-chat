@@ -1,6 +1,6 @@
-import _createAnimations from "./animation.js";
-import _playerEventListener from "./player.js";
-import _mediaEventLister from "../../meeting.js";
+import createAnimations from "./animation.js";
+import playerEventListener from "./player.js";
+import mediaEventLister from "../../meeting.js";
 
 export function _create(context) {
   const self = context;
@@ -47,12 +47,12 @@ export function _create(context) {
   );
 
   // config animations and listen for player events
-  _createAnimations(context);
-  _playerEventListener(context, self);
-  _mediaEventLister(context, self);
+  createAnimations(context);
+  playerEventListener(context, self);
+  mediaEventLister(context, self);
 
   context.add
-    .text(16, 16, "Procure pelos Gambuzinos\nWalk with 'WASD'\nPress 'C' to change username", {
+    .text(16, 16, "Procure pelos Gambuzinos\nWalk with 'WASD'", {
       font: "18px monospace",
       fill: "#000000",
       padding: { x: 20, y: 10 },

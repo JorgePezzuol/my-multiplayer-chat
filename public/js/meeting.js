@@ -1,7 +1,7 @@
 export default function (context, self) {
   const domain = "meet.jit.si";
   const options = {
-    roomName: "JorgePezzuol",
+    roomName: "jorgepezzuol_",
     width: 800,
     height: 600,
     parentNode: document.querySelector("#meeting"),
@@ -11,4 +11,10 @@ export default function (context, self) {
     },
   };
   const api = new JitsiMeetExternalAPI(domain, options);
+  api.executeCommand('displayName', localStorage.getItem("username"));
+
+  api.addEventListener("incomingMessage", (event) => {
+    alert(`From: ${event.from} Message: ${event.message} Socket: ${context.socket.id}`);
+  });
+
 }

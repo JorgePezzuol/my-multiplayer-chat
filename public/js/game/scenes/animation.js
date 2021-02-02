@@ -1,4 +1,4 @@
-export default function _createAnimations(context) {
+export default function createAnimations(context) {
   const anims = context.anims;
   anims.create({
     key: "misa-left-walk",
