@@ -67,7 +67,6 @@ export default function playerEventListener(context, self) {
   });
   context.socket.on("playerIsSpeaking", function (playerId) {
     self.otherPlayers.getChildren().forEach(function (otherPlayer) {
-      console.log(`### ${playerId}`);
       if (playerId === otherPlayer.playerId) {
         const mouth = self.physics.add
           .sprite(otherPlayer.x - 50, otherPlayer.y - 30, "mouth")

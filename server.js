@@ -50,6 +50,11 @@ io.on("connection", function (socket) {
   });
 });
 
-server.listen(8081, function () {
+const port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8082;
+}
+
+server.listen(port, function () {
   console.log(`Listening on ${server.address().port}`);
 });
