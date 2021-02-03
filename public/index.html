@@ -14,7 +14,7 @@
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="js/vendor/phaser.min.js" defer></script>
     <script src="js/vendor/meet.jit.js" defer></script>
-    <script src="js/vendor/hark.js" defer></script>
+    <script src="js/vendor/hark.js" type="module" defer></script>
 
     <!-- game-->
     <script src="js/game/index.js" type="module" defer></script>
@@ -69,31 +69,5 @@
         </div>
       </div>
     </section>
-
-    <script>
-      navigator.getUserMedia =
-        navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia;
-      var constraints = { audio: true};
-
-      function errorCallback(error) {
-        console.log("navigator.getUserMedia error: ", error);
-      }
-      navigator.getUserMedia(constraints, onMediaSuccess, errorCallback);
-
-      function onMediaSuccess(blog) {
-        var options = {};
-        var speechEvents = hark(blog, options);
-
-        speechEvents.on("speaking", function () {
-          console.log("speaking@@@");
-        });
-
-        speechEvents.on("stopped_speaking", function () {
-          console.log("stopped_speaking");
-        });
-      }
-    </script>
   </body>
 </html>

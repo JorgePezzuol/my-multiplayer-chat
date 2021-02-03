@@ -7,6 +7,8 @@ export function _create(context) {
 
   context.socket = io();
 
+  self.isSpeaking = false;
+
   context.map = context.make.tilemap({ key: "map" });
 
   const tileset = context.map.addTilesetImage(
@@ -60,4 +62,6 @@ export function _create(context) {
     })
     .setScrollFactor(0)
     .setDepth(30);
+
+
 }

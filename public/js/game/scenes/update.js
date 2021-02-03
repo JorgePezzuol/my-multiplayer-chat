@@ -63,7 +63,6 @@ export function _update(context) {
         username: localStorage.getItem("username"),
       });
     }
-
     context.player.username.x = context.player.x - 30;
     context.player.username.y = context.player.y - 30;
   }

@@ -43,6 +43,11 @@ io.on("connection", function (socket) {
     // emit a message to all players about the player that moved
     socket.broadcast.emit("playerMoved", players[socket.id]);
   });
+
+  // when a player speaks, emit to all other players a gif with a mouth speaking
+  socket.on("playerHasSpoken", function (playerData) {
+    socket.broadcast.emit("playerIsSpeaking", playerData.playerId);
+  });
 });
 
 server.listen(8081, function () {
