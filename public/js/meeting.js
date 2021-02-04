@@ -3,8 +3,8 @@ import hark from "./vendor/hark.js";
 const domain = "meet.jit.si";
 const options = {
   roomName: "jorgepezzuol_",
-  width: 800,
-  height: 600,
+  // width: 800,
+  // height: 600,
   parentNode: document.querySelector("#meeting"),
   interfaceConfigOverwrite: {
     SHOW_JITSI_WATERMARK: false,
