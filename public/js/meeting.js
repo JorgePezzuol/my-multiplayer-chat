@@ -1,8 +1,5 @@
 import hark from "./vendor/hark.js";
 
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-const constraints = { audio: true };
-
 const domain = "meet.jit.si";
 const options = {
   roomName: "jorgepezzuol_",
@@ -15,7 +12,7 @@ const options = {
   },
 };
 
-export default function (context, self) {
+export default async function (context, self) {
   const api = new JitsiMeetExternalAPI(domain, options);
 
   api.executeCommand("displayName", localStorage.getItem("username"));
@@ -32,36 +29,36 @@ export default function (context, self) {
     );
   });
 
-  navigator.getUserMedia(
-    constraints,
-    (stream) => {
-      const options = {};
-      const speechEvents = new hark(stream, options);
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    });
 
-      speechEvents.on("speaking", () => {
-        context.isSpeaking = true;
-        context.socket.emit("playerHasSpoken", {
-          playerId: context.socket.id,
-          isSpeaking: context.isSpeaking,
-        });
-        console.log(
-          `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
-        );
-      });
+    const speechEvents = new hark(stream, options);
 
-      speechEvents.on("stopped_speaking", () => {
-        context.isSpeaking = false;
-        context.socket.emit("playerHasSpoken", {
-          playerId: context.socket.id,
-          isSpeaking: context.isSpeaking,
-        });
-        console.log(
-          `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
-        );
+    speechEvents.on("speaking", () => {
+      context.isSpeaking = true;
+      context.socket.emit("playerHasSpoken", {
+        playerId: context.socket.id,
+        isSpeaking: context.isSpeaking,
       });
-    },
-    (error) => {
-      console.log("navigator.getUserMedia error: ", error);
-    }
-  );
+      console.log(
+        `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
+      );
+    });
+
+    speechEvents.on("stopped_speaking", () => {
+      context.isSpeaking = false;
+      context.socket.emit("playerHasSpoken", {
+        playerId: context.socket.id,
+        isSpeaking: context.isSpeaking,
+      });
+      console.log(
+        `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
+      );
+    });
+  } catch (error) {
+    console.log("navigator.getUserMedia error: ", error);
+  }
 }
