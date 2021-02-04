@@ -17,18 +17,6 @@ export default async function (context, self) {
 
   api.executeCommand("displayName", localStorage.getItem("username"));
 
-  api.addEventListener("incomingMessage", (event) => {
-    alert(
-      `From: ${event.from} Message: ${event.message} Socket: ${context.socket.id}`
-    );
-  });
-
-  api.addEventListener("dominantSpeakerChanged", (event) => {
-    console.log(
-      `Dominang Speaker: @@@${event.id} Socket: ${context.socket.id}`
-    );
-  });
-
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -43,21 +31,9 @@ export default async function (context, self) {
         playerId: context.socket.id,
         isSpeaking: context.isSpeaking,
       });
-      console.log(
-        `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
-      );
     });
 
-    speechEvents.on("stopped_speaking", () => {
-      // context.isSpeaking = false;
-      // context.socket.emit("playerHasSpoken", {
-      //   playerId: context.socket.id,
-      //   isSpeaking: context.isSpeaking,
-      // });
-      console.log(
-        `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
-      );
-    });
+    speechEvents.on("stopped_speaking", () => {});
   } catch (error) {
     console.log("navigator.getUserMedia error: ", error);
   }
