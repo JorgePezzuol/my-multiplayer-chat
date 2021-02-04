@@ -49,11 +49,11 @@ export default async function (context, self) {
     });
 
     speechEvents.on("stopped_speaking", () => {
-      context.isSpeaking = false;
-      context.socket.emit("playerHasSpoken", {
-        playerId: context.socket.id,
-        isSpeaking: context.isSpeaking,
-      });
+      // context.isSpeaking = false;
+      // context.socket.emit("playerHasSpoken", {
+      //   playerId: context.socket.id,
+      //   isSpeaking: context.isSpeaking,
+      // });
       console.log(
         `@@@Socket: ${context.socket.id}, is speaking? ${context.isSpeaking}`
       );
