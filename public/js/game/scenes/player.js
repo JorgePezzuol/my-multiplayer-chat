@@ -69,7 +69,7 @@ export default function playerEventListener(context, self) {
     self.otherPlayers.getChildren().forEach(function (otherPlayer) {
       if (playerId === otherPlayer.playerId) {
         const mouth = self.physics.add
-          .sprite(otherPlayer.x - 30, otherPlayer.y - 50, "mouth")
+          .sprite(otherPlayer.x - 30, otherPlayer.y - 30, "mouth")
           .setSize(45, 45);
         self.physics.add.collider(mouth, self.worldLayer);
         mouth.anims.play("mouth-speaking", true);

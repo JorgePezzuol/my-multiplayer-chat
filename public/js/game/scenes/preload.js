@@ -4,7 +4,7 @@ export function _preload(context) {
     "../assets/tilesets/tuxmon-sample-32px-extruded.png"
   );
 
-  context.load.spritesheet("mouth", "../assets/mouth-speaking.png", {
+  context.load.spritesheet("mouth", "../assets/mouth-speaking2.png", {
     frameWidth: 45,
     frameHeight: 45,
   });
