@@ -2,15 +2,18 @@ import hark from "./vendor/hark.js";
 
 const domain = "meet.jit.si";
 const options = {
-  roomName: "jorgepezzuol_",
+  roomName: "gambuzinos",
   width: 800,
   height: 600,
   parentNode: document.querySelector("#meeting"),
   interfaceConfigOverwrite: {
     SHOW_JITSI_WATERMARK: false,
     SHOW_WATERMARK_FOR_GUESTS: false,
+    SHOW_CHROME_EXTENSION_BANNER: false,
   },
 };
+
+document.querySelector("#chat").style.display = "block";
 
 export default async function (context, self) {
   const api = new JitsiMeetExternalAPI(domain, options);
@@ -26,10 +29,8 @@ export default async function (context, self) {
     const speechEvents = new hark(stream, options);
 
     speechEvents.on("speaking", () => {
-      context.isSpeaking = true;
       context.socket.emit("playerHasSpoken", {
         playerId: context.socket.id,
-        isSpeaking: context.isSpeaking,
       });
     });
 
@@ -37,4 +38,46 @@ export default async function (context, self) {
   } catch (error) {
     console.log("navigator.getUserMedia error: ", error);
   }
+
+  document.querySelector("#chatMessage").addEventListener("keydown", (e) => {
+    e.stopPropagation();
+    if (e.key === "Enter") {
+      const message = document.querySelector("#chatMessage").value;
+
+      const ballonMessage = `
+      <section class="-right">
+      <span>${localStorage.getItem("username")}:</span>
+      <div class="nes-balloon from-right">
+        <p>${message}</p>
+      </div>
+        
+      </section>`;
+
+      if (message !== "") {
+        document
+          .querySelector("#chatMessageSection")
+          .insertAdjacentHTML("beforeend", ballonMessage);
+        context.socket.emit("playerSentChatMessage", {
+          playerId: context.socket.id,
+          message: message,
+        });
+
+        document.querySelector("#chatMessage").value = "";
+      }
+    }
+  });
+
+  context.socket.on("showChatMessage", (response) => {
+    const ballonMessage = `
+    <section class="-left" style="margin-left:50%">
+    <span>${response.username}:</span>
+      <div class="nes-balloon from-left">
+        <p>${response.message}</p>
+      </div>
+    </section>`;
+
+    document
+      .querySelector("#chatMessageSection")
+      .insertAdjacentHTML("beforeend", ballonMessage);
+  });
 }

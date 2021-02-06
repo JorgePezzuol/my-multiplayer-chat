@@ -16,4 +16,6 @@ export function _preload(context) {
     "../assets/atlas/atlas.png",
     "../assets/atlas/atlas.json"
   );
+
+  context.cursors = context.input.keyboard.createCursorKeys();
 }

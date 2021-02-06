@@ -46,7 +46,7 @@ export default function createAnimations(context) {
   });
   anims.create({
     key: "mouth-speaking",
-    frames: anims.generateFrameNumbers('mouth', {start: 0, end: 75}),
+    frames: anims.generateFrameNumbers('mouth', {start: 0, end: 14}),
     frameRate: 20,
     repeat: -1,
     hideOnComplete: true

@@ -48,6 +48,11 @@ io.on("connection", function (socket) {
   socket.on("playerHasSpoken", function (playerData) {
     socket.broadcast.emit("playerIsSpeaking", playerData.playerId);
   });
+
+  socket.on("playerSentChatMessage", (message) => {
+    message.username = players[socket.id].username;
+    socket.broadcast.emit("showChatMessage", message);
+  });
 });
 
 server.listen(process.env.PORT || 5000, function () {

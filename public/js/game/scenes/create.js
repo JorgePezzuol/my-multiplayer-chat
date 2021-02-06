@@ -7,8 +7,6 @@ export function _create(context) {
 
   context.socket = io();
 
-  self.isSpeaking = false;
-
   context.map = context.make.tilemap({ key: "map" });
 
   const tileset = context.map.addTilesetImage(
@@ -33,28 +31,13 @@ export function _create(context) {
   context.camera = context.cameras.main;
   context.otherPlayers = context.physics.add.group();
 
-  context.cursors = context.input.keyboard.createCursorKeys();
-
-  context.keyA = context.input.keyboard.addKey(
-    Phaser.Input.Keyboard.KeyCodes.A
-  );
-  context.keyS = context.input.keyboard.addKey(
-    Phaser.Input.Keyboard.KeyCodes.S
-  );
-  context.keyD = context.input.keyboard.addKey(
-    Phaser.Input.Keyboard.KeyCodes.D
-  );
-  context.keyW = context.input.keyboard.addKey(
-    Phaser.Input.Keyboard.KeyCodes.W
-  );
-
   // config animations and listen for player events
   createAnimations(context);
   playerEventListener(context, self);
   mediaEventLister(context, self);
 
   context.add
-    .text(16, 16, "Procure pelos Gambuzinos\nWalk with 'WASD'", {
+    .text(16, 16, "Procure pelos Gambuzinos\nWalk with arrow keys", {
       font: "18px monospace",
       fill: "#000000",
       padding: { x: 20, y: 10 },
@@ -62,6 +45,4 @@ export function _create(context) {
     })
     .setScrollFactor(0)
     .setDepth(30);
-
-
 }

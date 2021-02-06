@@ -4,10 +4,11 @@
     <title>Multiplayer Game</title>
 
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- css-->
+    <link rel="stylesheet" href="css/nes.min.css" />
     <link rel="stylesheet" href="css/bulma.min.css" />
 
     <!-- vendors-->
@@ -15,59 +16,111 @@
     <script src="js/vendor/phaser.min.js" defer></script>
     <script src="js/vendor/meet.jit.js" defer></script>
     <script src="js/vendor/hark.js" type="module" defer></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <!-- game-->
     <script src="js/game/index.js" type="module" defer></script>
   </head>
 
   <body>
-    <section class="section">
-      <div class="container">
-        <h1 class="title" id="title">Test</h1>
-        <p class="subtitle">subtitle</p>
-        <div class="columns is-centered">
-          <div class="column">
-            <div id="game-container"></div>
-          </div>
-          <div class="column">
-            <div id="meeting"></div>
-          </div>
-        </div>
-      </div>
-      <div class="modal" id="UsernameModal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Enter your Username</p>
-            <button class="delete close-modal" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Username:</label>
+    <section class="hero">
+      <!-- Hero head: will stick at the top -->
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container is-fluid">
+            <div class="navbar-brand">
+              <a class="navbar-item">
+                <img
+                  src="https://bulma.io/images/bulma-type-white.png"
+                  alt="Logo"
+                />
+              </a>
+              <span class="navbar-burger" data-target="navbarMenuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+              <div class="navbar-end">
+                <a
+                  id="btn-show-game"
+                  class="nes-btn mt-3"
+                  style="display: none"
+                  href="#"
+                  >QUERO CAFEE</a
+                >
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <p class="control">
-                    <input
-                      class="input"
-                      id="username"
-                      type="text"
-                      placeholder="Enter username here"
-                    />
-                  </p>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-8">
+              <div id="meeting" class="is-pulled-right"></div>
+              <div
+                class="is-pulled-right"
+                id="game-container"
+                style="display: none"
+              ></div>
+            </div>
+            <div class="column is-4" id="chat" style="display: none">
+              <section style="max-height: 500px; overflow-y:auto; overflow-x: hidden;" class="message-list" id="chatMessageSection"></section>
+              <div
+                style="position: absolute; bottom: 0; width: 25%"
+                class="mb-4"
+              >
+                <div class="nes-field">
+                  <input
+                    type="text"
+                    id="chatMessage"
+                    class="nes-input"
+                    placeholder="Enter message"
+                  />
                 </div>
               </div>
             </div>
-          </section>
-          <footer class="modal-card-foot">
-            <button id="btn-save-username" class="button is-success">
-              Confirm
-            </button>
-            <button class="button close-modal">Cancel</button>
-          </footer>
+          </div>
         </div>
       </div>
     </section>
+
+    <div class="modal" id="UsernameModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Enter your username</p>
+          <button class="delete close-modal" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Username:</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input
+                    type="text"
+                    id="username"
+                    class="nes-input"
+                    placeholder=""
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot is-justify-content-flex-end">
+          <button id="btn-save-username" class="nes-btn is-success nes-btn">
+            Confirm
+          </button>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
