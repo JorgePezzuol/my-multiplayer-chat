@@ -42,7 +42,7 @@ export function _update(context) {
         animation: "misa-back-walk",
         username: localStorage.getItem("username"),
       });
-    } else if (context.cursors.left.isDown) {
+    } else if (context.cursors.down.isDown) {
       context.player.anims.play("misa-front-walk", true);
       context.socket.emit("playerMovement", {
         x: context.player.x,

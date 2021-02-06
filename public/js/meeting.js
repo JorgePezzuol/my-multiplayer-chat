@@ -47,7 +47,7 @@ export default async function (context, self) {
       const ballonMessage = `
       <section class="-right">
       <span>${localStorage.getItem("username")}:</span>
-      <div class="nes-balloon from-right">
+      <div class="nes-balloon from-left">
         <p>${message}</p>
       </div>
         
@@ -69,9 +69,9 @@ export default async function (context, self) {
 
   context.socket.on("showChatMessage", (response) => {
     const ballonMessage = `
-    <section class="-left" style="margin-left:50%">
+    <section class="-left">
     <span>${response.username}:</span>
-      <div class="nes-balloon from-left">
+      <div class="nes-balloon from-right">
         <p>${response.message}</p>
       </div>
     </section>`;
