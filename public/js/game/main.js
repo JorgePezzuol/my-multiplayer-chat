@@ -1,4 +1,4 @@
-import Game from "./game.js";
+import GameScene from "./scenes/GameScene.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -12,7 +12,7 @@ const config = {
       gravity: { y: 0 },
     },
   },
-  scene: [Game],
+  scene: [GameScene],
 };
 
 // open modal to enter username and start game
