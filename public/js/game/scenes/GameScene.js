@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import Animation from "../Animation.js";
 import MeetingJitsi from "../MeetingJitsi.js";
 import PlayerMovement from "../PlayerMovement.js";
