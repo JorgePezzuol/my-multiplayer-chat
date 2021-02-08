@@ -44,6 +44,8 @@ export default class MeetingJitsi {
     const gameSceneContext = this.gameScene;
     const api = new JitsiMeetExternalAPI(this.domain, this.options);
 
+    const $ = document.querySelector.bind(document);
+
     api.executeCommand("displayName", localStorage.getItem("username"));
 
     try {
@@ -65,10 +67,10 @@ export default class MeetingJitsi {
       console.log("navigator.getUserMedia error: ", error);
     }
 
-    document.querySelector("#chatMessage").addEventListener("keydown", (e) => {
+    $("#chatMessage").addEventListener("keydown", (e) => {
       e.stopPropagation();
       if (e.key === "Enter") {
-        const message = document.querySelector("#chatMessage").value;
+        const message = $("#chatMessage").value;
 
         const ballonMessage = `
       <section class="-right">
@@ -80,15 +82,16 @@ export default class MeetingJitsi {
       </section>`;
 
         if (message !== "") {
-          document
-            .querySelector("#chatMessageSection")
-            .insertAdjacentHTML("beforeend", ballonMessage);
+          $("#chatMessageSection").insertAdjacentHTML(
+            "beforeend",
+            ballonMessage
+          );
           this.gameScene.socket.emit("playerSentChatMessage", {
             playerId: gameSceneContext.socket.id,
             message: message,
           });
 
-          document.querySelector("#chatMessage").value = "";
+          $("#chatMessage").value = "";
         }
       }
     });
@@ -102,11 +105,9 @@ export default class MeetingJitsi {
       </div>
     </section>`;
 
-      document
-        .querySelector("#chatMessageSection")
-        .insertAdjacentHTML("beforeend", ballonMessage);
+      $("#chatMessageSection").insertAdjacentHTML("beforeend", ballonMessage);
     });
 
-    document.querySelector("#chat").style.display = "block";
+    $("#chat").style.display = "block";
   }
 }

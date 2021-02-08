@@ -1,4 +1,4 @@
-export default class Animation_ {
+export default class Animation {
   constructor(gameScene) {
     this.gameScene = gameScene;
   }

@@ -15,40 +15,38 @@ const config = {
   scene: [GameScene],
 };
 
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
 // open modal to enter username and start game
-Array.from(document.querySelectorAll(".close-modal")).forEach((element) => {
+Array.from($$(".close-modal")).forEach((element) => {
   element.addEventListener("click", () => {
-    document.querySelector("#UsernameModal").style.display = "none";
+    $("#UsernameModal").style.display = "none";
   });
 });
 
-document.querySelector("#UsernameModal").style.display = "block";
+$("#UsernameModal").style.display = "block";
 
-document
-  .querySelector("#btn-save-username")
-  .addEventListener("click", (evt) => {
-    if (document.querySelector("#username").value !== "") {
-      localStorage.setItem(
-        "username",
-        document.querySelector("#username").value
-      );
-      document.querySelector("#UsernameModal").style.display = "none";
-      startGame();
-      document.querySelector("#btn-show-game").style.display = "block";
-    }
-  });
+$("#btn-save-username").addEventListener("click", (evt) => {
+  if ($("#username").value !== "") {
+    localStorage.setItem("username", $("#username").value);
+    $("#UsernameModal").style.display = "none";
+    startGame();
+    $("#btn-show-game").style.display = "block";
+  }
+});
 
-document.querySelector("#btn-show-game").addEventListener("click", (event) => {
+$("#btn-show-game").addEventListener("click", (event) => {
   event.preventDefault();
 
-  const gameDiv = document.querySelector("#game-container");
+  const gameDiv = $("#game-container");
   if (gameDiv.style.display === "none") {
     gameDiv.style.display = "block";
   } else {
     gameDiv.style.display = "none";
   }
 
-  const meetingDiv = document.querySelector("#meeting");
+  const meetingDiv = $("#meeting");
   if (meetingDiv.style.display === "none") {
     meetingDiv.style.display = "block";
   } else {

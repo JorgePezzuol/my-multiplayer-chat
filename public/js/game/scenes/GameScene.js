@@ -1,4 +1,5 @@
-import Animation_ from "../Animation_.js";
+import Phaser from 'phaser';
+import Animation from "../Animation.js";
 import MeetingJitsi from "../MeetingJitsi.js";
 import PlayerMovement from "../PlayerMovement.js";
 import Player from "../Player.js";
@@ -15,7 +16,7 @@ export default class GameScene extends Phaser.Scene {
     this.map = null;
     this.worldLayer = null;
 
-    this.animsManager = new Animation_(this);
+    this.animsManager = new Animation(this);
     this.playerManager = new Player(this);
     this.playerMovementManager = new PlayerMovement(this);
     this.meetingJitsiManager = new MeetingJitsi(this);
@@ -67,7 +68,6 @@ export default class GameScene extends Phaser.Scene {
     this.animsManager.init();
     this.playerManager.init();
     this.meetingJitsiManager.init();
-
 
     this.add
       .text(16, 16, "Search for the gambuzinos\nWalk with arrow keys", {
