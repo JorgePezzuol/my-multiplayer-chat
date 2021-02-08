@@ -1,47 +1,118 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <style>
-      html,
-      body,
-      #game-container {
-        margin: 0;
-        padding: 0;
-      }
-      #game-container {
-        min-width: 100vw;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #game-container > canvas {
-        border-radius: 5px;
-      }
-      #video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 300px);
-        grid-auto-rows: 300px;
-      }
+    <title>Multiplayer Game</title>
 
-      video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- css-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/nes.min.css" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <!-- vendors-->
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="js/vendor/phaser.min.js" defer></script>
+    <script src="js/vendor/meet.jit.js" defer></script>
+
+    <!-- game-->
+    <script src="js/game/main.js" type="module" defer></script>
   </head>
 
-  <body>
-    <div id="game-container"></div>
-    <div id="video-grid"></div>
-    <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="//cdn.jsdelivr.net/npm/phaser@3.3.0/dist/phaser.min.js"></script> -->
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.js"></script>
-    <script src="js/game.js"></script>
+  <body class="gradient-bg" style="height: 100vh">
+    <section class="hero is-small">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div id="navMenu" class="navbar-menu mt-2">
+              <div class="navbar-start">
+                <a
+                  target="_blank"
+                  href="https://github.com/jorgepezzuol/my-multiplayer-chat"
+                  ><i class="nes-octocat animate navbar-item"></i
+                ></a>
+                <i class="snes-jp-logo navbar-item mt-6" id="btn-show-game"></i>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body mt-5">
+        <div class="container">
+          <h1 class="nes-text mb-2 is-bold">
+            Click on the NES controller to switch!
+          </h1>
+          <div class="columns is-gapless is-paddingless">
+            <div class="column is-8">
+              <div id="meeting"></div>
+              <div id="game-container" style="display: none"></div>
+            </div>
+
+            <div class="column is-4 mb-1" id="chat" style="display: none">
+              <section
+                class="message-list p-3"
+                id="chatMessageSection"
+              ></section>
+              <div
+                style="position: absolute; bottom: 0; width: inherit"
+                class=""
+              >
+                <div class="nes-field">
+                  <input
+                    type="text"
+                    id="chatMessage"
+                    class="nes-input"
+                    placeholder="Enter message"
+                    maxlength="30"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal" id="UsernameModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Enter your username</p>
+        </header>
+        <section class="modal-card-body">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Username:</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input
+                    type="text"
+                    id="username"
+                    class="nes-input"
+                    placeholder=""
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot is-justify-content-flex-end">
+          <button id="btn-save-username" class="nes-btn is-success nes-btn">
+            Confirm
+          </button>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
