@@ -37,7 +37,7 @@ export function _create(context) {
   mediaEventLister(context, self);
 
   context.add
-    .text(16, 16, "Procure pelos Gambuzinos\nWalk with arrow keys", {
+    .text(16, 16, "Search for the gambuzinos\nWalk with arrow keys", {
       font: "18px monospace",
       fill: "#000000",
       padding: { x: 20, y: 10 },

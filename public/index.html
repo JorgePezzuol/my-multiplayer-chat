@@ -22,11 +22,9 @@
     <script src="js/vendor/phaser.min.js" defer></script>
     <script src="js/vendor/meet.jit.js" defer></script>
     <script src="js/vendor/hark.js" type="module" defer></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <!-- game-->
     <script src="js/game/index.js" type="module" defer></script>
-
   </head>
 
   <body class="gradient-bg" style="height: 100vh">
@@ -36,12 +34,12 @@
           <div class="container">
             <div id="navMenu" class="navbar-menu mt-2">
               <div class="navbar-start">
-                <i class="snes-jp-logo navbar-item mt-6" id="btn-show-game"></i>
                 <a
                   target="_blank"
                   href="https://github.com/jorgepezzuol/my-multiplayer-chat"
                   ><i class="nes-octocat animate navbar-item"></i
                 ></a>
+                <i class="snes-jp-logo navbar-item mt-6" id="btn-show-game"></i>
               </div>
             </div>
             <!-- <div id="navbarMenuHeroA" class="navbar-menu">
@@ -56,12 +54,15 @@
       <!-- Hero content: will be in the middle -->
       <div class="hero-body mt-5">
         <div class="container">
-          <h1 class="nes-text mb-2 is-bold">Click on the NES controller to switch!</h1>
+          <h1 class="nes-text mb-2 is-bold">
+            Click on the NES controller to switch!
+          </h1>
           <div class="columns is-gapless is-paddingless">
             <div class="column is-8">
               <div id="meeting"></div>
               <div id="game-container" style="display: none"></div>
             </div>
+
             <div class="column is-4 mb-1" id="chat" style="display: none">
               <section
                 class="message-list p-3"
