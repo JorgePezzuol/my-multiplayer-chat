@@ -6,7 +6,7 @@ Multiplayer game with meeting embedded
 * node server.js
 
 ## Demo
-<a target="_blank" href="my-multiplayer-game.herokuapp.com">Output</a>
+<a target="_blank" href="my-multiplayer-game.herokuapp.com">Heroku app Link</a>
 
 ## Contact
 [@jorgepezzuol](https://www.linkedin.com/in/jorge-pezzuol/)
