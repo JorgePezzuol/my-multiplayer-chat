@@ -1,5 +1,5 @@
 # Project
-Multiplayer game with meeting embedded
+Multiplayer game with Phaser 3 and embedded Jitsi SDK
 
 ## Setup
 * clone/download and cd my-multiplayer-chat
