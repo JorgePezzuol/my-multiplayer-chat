@@ -1,5 +1,5 @@
 # Project
-Multiplayer game with Phaser 3 and embedded Jitsi SDK and realtime chat with Socket io
+Multiplayer game with Phaser 3, embedded Jitsi SDK and real time chat with Socket io
 
 ## Technologies
 <ul>
